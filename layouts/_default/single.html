@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article>
+    <header>
+        <h1 id="{{.Title}}">
+            <a href="{{ if .IsPage }}#{{.Title}}{{ else }}{{.Permalink}}{{ end }}">{{ .Title }}</a>
+        </h1>
+        {{ if .IsPage }} {{ partial "toc.html" . }} {{ else }} {{ end }}
+    </header>
+    {{ .Content }}
+    <footer>
+        {{ with .PrevInSection }}
+        <a href="{{.Permalink}}">{{.Title}}</a>
+        {{ end }} {{ with .NextInSection }}
+        <a style="float: right;" href="{{.Permalink}}">{{.Title}}</a>
+        {{ end }}
+    </footer>
+</article>
+{{ end }}

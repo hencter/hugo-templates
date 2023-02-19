@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{- .Site.LanguageCode -}}">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  {{ template "_internal/schema.html" . }}
+  {{/* {{ template "_internal/opengraph.html" . }} */}}
+
+  <title>
+    {{ .Site.Title }} {{ if .Title -}} · {{ .Title }} {{else -}} {{ end -}}
+  </title>
+
+  {{- $styles := resources.Get "css/main.css" -}}
+  <link rel='stylesheet' href='{{ $styles.Permalink }}'>
+
+
+</head>
+
+<body>
+
+  <header>{{- partial "nav.html" . -}}</header>
+
+  <main>{{ block "main" . -}}{{ end -}}</main>
+
+  <footer>{{- partial "creativecommons.html" . -}}</footer>
+
+  {{- partial "script.html" . -}}
+
+</body>
+
+</html>

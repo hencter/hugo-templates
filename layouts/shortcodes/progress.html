@@ -1,0 +1,9 @@
+{{ $max := .Get "max"}}
+{{ $value := .Get "value"}}
+{{ with $max }}
+<label for="file">{{$value}}/{{$max}}</label>
+{{/*    */}}
+<progress style="height: 22px; margin-bottom: -1px;" max="{{$max}}" value="{{$value}}">{{$value}}/{{$max}}</progress>
+{{ else }}
+{{ errorf "missing value for param 'max': %s" .Position }}
+{{ end }}

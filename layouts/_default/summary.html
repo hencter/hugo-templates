@@ -1,0 +1,33 @@
+<article>
+    <header>
+        <h1 id="{{.Title}}"><a href="{{.Permalink}}">{{ .Title }}</a></h1>
+        <p>
+            <time>{{ .Date | time.Format ":date_full" }}</time>
+            {{/* <time>·{{ .ReadingTime }}&nbsp;{{- i18n "ReadingTime" . -}}</time> */}}
+            <span>&nbsp;{{ i18n "WordCount" . }}</span>
+            <span>
+                <time>&nbsp;{{- i18n "ReadingTime" . -}}</time>
+            </span>
+            <br>
+            <span>
+                {{ with .Params.categories -}}
+                {{ range . -}}
+                [<a href='{{ "categories/" | absURL }}{{ . | urlize }}'>{{- . -}}</a>]
+                {{ end -}}
+                {{ end -}}
+            </span>
+            <span>
+                {{ with .Params.tags -}}
+                {{ range . -}}
+                #<a href='{{ "tags/" | absURL }}{{ . | urlize }}'>{{- . -}}</a>
+                {{ end -}}
+                {{ end -}}
+            </span>
+        </p>
+
+    </header>
+    <p>
+        {{ .Summary }}
+        <a href="{{.Permalink}}">...</a>
+    </p>
+</article>

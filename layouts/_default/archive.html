@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+<section>
+  {{ range $taxonomy_term, $taxonomy := .Site.Taxonomies }}
+  {{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
+
+  <h2>
+    <a href="#{{ i18n $taxonomy_term }}">{{ i18n $taxonomy_term }}</a>
+  </h2>
+
+  <div>
+    {{ range $key, $value := $taxonomy }}
+    <span>
+      <a href="#{{ $key }}">{{ .Page.Title }}</a>
+      <sup style="color: gray;">{{- .Count -}}</sup>
+    </span>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+</section>
+
+{{ range $taxonomy_term, $taxonomy := .Site.Taxonomies }}
+<section>
+  {{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
+
+  <h2 id="{{ i18n $taxonomy_term }}">
+    <a href="{{ .Permalink }}">{{ i18n $taxonomy_term }}</a>
+  </h2>
+
+  {{ range $key, $value := $taxonomy }}
+
+  {{ $key}}
+  <ul id="{{ $key }}">
+    {{ range $value.Pages }}
+    <li>
+      <a href="{{ .Permalink}}">{{ .Page.Title}}</a>
+    </li>
+    {{ end }}
+  </ul>
+
+  {{ end }}
+
+  {{ end }}
+</section>
+
+{{ end }}
+
+{{ end }}
