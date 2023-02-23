@@ -16,7 +16,7 @@
    ```toml
    [module]
    [[module.imports]]
-    path = 'github.com/hencter/content'
+    path = 'github.com/hencter/layout'
    ```
 
 5. Update Module
